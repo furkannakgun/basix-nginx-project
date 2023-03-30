@@ -1,0 +1,30 @@
+nginx-config
+my-nginx-image
+/etc/nginx/conf.d/default.conf
+
+
+NAME: jenkins
+LAST DEPLOYED: Fri Mar 24 18:05:21 2023
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+CHART NAME: jenkins
+CHART VERSION: 12.0.2
+APP VERSION: 2.387.1
+
+** Please be patient while the chart is being deployed **
+
+1. Get the Jenkins URL by running:
+
+** Please ensure an external IP is associated to the jenkins service before proceeding **
+** Watch the status using: kubectl get svc --namespace default -w jenkins **
+
+  export SERVICE_IP=$(kubectl get svc --namespace default jenkins --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
+  echo "Jenkins URL: http://$SERVICE_IP/"
+
+2. Login with the following credentials
+
+  echo Username: user
+  echo Password: $(kubectl get secret --namespace default jenkins -o jsonpath="{.data.jenkins-password}" | base64 -d)

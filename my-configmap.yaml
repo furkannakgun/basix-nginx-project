@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-configmap
+data:
+  index.html: |-
+    Furkan-Akgun-v3
+  nginx.conf: |-
+    server {
+        listen 80;
+        server_name localhost;
+        location /furkan-akgunn {
+            root /usr/share/nginx/html;
+            index index.html;
+        }
+    }
